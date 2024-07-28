@@ -38,6 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
     Route::get('quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
     Route::post('quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+
+    Route::prefix('quizzes/{quiz}')->group(function () {
+        Route::get('questions', [QuestionController::class, 'index'])->name('quizzes.questions.index');
+        Route::get('questions/create', [QuestionController::class, 'create'])->name('quizzes.questions.create');
+        Route::post('questions', [QuestionController::class, 'store'])->name('quizzes.questions.store');
+        // Additional routes for show, edit, update, and delete can be added here.
+    });
+
 });
 
 
