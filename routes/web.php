@@ -1,7 +1,4 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,5 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('active-quizzes', function (){
+    return Inertia::render('ActiveQuizzes'); // Assuming you have an ActiveQuizzes.vue component
+})->name('active-quizzes');
+
+Route::get('create-quiz', function (){
+    return Inertia::render('CreateQuiz'); // Assuming you have a CreateQuiz.vue component
+})->name('create-quiz');
 
 require __DIR__.'/auth.php';
