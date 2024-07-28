@@ -30,9 +30,9 @@ function handleImageError() {
     <Head title="Welcome" />
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 h-full flex items-center justify-center">
         <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white w-full">
-            <div class="w-full max-w-2xl px-6 lg:max-w-7xl">
+            <div class="w-full max-w-[500px] px-6">
                 <header class="flex justify-between items-center py-10 w-full">
-                    <nav v-if="canLogin" class="flex space-x-4">
+                    <nav v-if="canLogin" class="flex w-full justify-between">
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
