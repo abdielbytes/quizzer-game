@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -28,5 +29,16 @@ Route::get('active-quizzes', function (){
 Route::get('create-quiz', function (){
     return Inertia::render('Quiz/CreateQuiz');
 })->name('create-quiz');
+
+
+
+// Other routes...
+
+Route::middleware('auth')->group(function () {
+    Route::get('quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+    Route::get('quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+    Route::post('quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+});
+
 
 require __DIR__.'/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuizRequest;
 use App\Http\Requests\UpdateQuizRequest;
 use App\Models\Quiz;
+use Inertia\Inertia;
 
 class QuizController extends Controller
 {
@@ -13,7 +14,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        $quizzes = Quiz::with('user')->get();
+        return Inertia::render('Quiz/Index', ['quizzes' => $quizzes]);
     }
 
     /**
@@ -21,7 +23,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Quiz/Create');
     }
 
     /**
@@ -29,7 +31,14 @@ class QuizController extends Controller
      */
     public function store(StoreQuizRequest $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $quiz = $request->user()->quizzes()->create($request->all());
+
+        return redirect()->route('quizzes.index')->with('success', 'Quiz created successfully.');
     }
 
     /**
