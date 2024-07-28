@@ -26,7 +26,7 @@ Route::get('active-quizzes', function (){
 })->name('active-quizzes');
 
 Route::get('create-quiz', function (){
-    return Inertia::render('CreateQuiz'); // Assuming you have a CreateQuiz.vue component
+    return Inertia::render('Quiz/CreateQuiz');
 })->name('create-quiz');
 
 require __DIR__.'/auth.php';
