@@ -24,21 +24,22 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <form class="row flex-center flex" @submit.prevent="handleLogin">
-    <div class="col-6 form-widget">
-      <h1 class="header">Supabase + Vue 3</h1>
-      <p class="description">Sign in via magic link with your email below</p>
-      <div>
-        <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
-      </div>
-      <div>
-        <input
-          type="submit"
-          class="button block"
-          :value="loading ? 'Loading' : 'Send magic link'"
-          :disabled="loading"
-        />
-      </div>
+  <form class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md" @submit.prevent="handleLogin">
+    <div class="text-center mb-4">
+      <h1 class="text-2xl font-semibold text-gray-800">Welcome to Quizzer-Games</h1>
+      <p class="text-gray-600">Excuse the boring design for now</p>
+      <p class="text-gray-600">Input your email below to sign in via a magic link.</p>
+    </div>
+    <div class="mb-4">
+      <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none text-black focus:ring-indigo-500 focus:border-indigo-500" required type="email" placeholder="Your email" v-model="email" />
+    </div>
+    <div>
+      <input
+        type="submit"
+        class="w-full px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        :value="loading ? 'Loading...' : 'Send magic link'"
+        :disabled="loading"
+      />
     </div>
   </form>
 </template>
