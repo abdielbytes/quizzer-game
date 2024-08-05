@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import Account from './components/Account.vue'
 import Auth from './components/Auth.vue'
+import QuizApp from './components/QuizApp.vue'
 import { supabase } from './supabase'
 import './css/index.css'
 
@@ -22,5 +23,6 @@ onMounted(() => {
   <div class="container" style="padding: 50px 0 100px 0">
     <Account v-if="session" :session="session" />
     <Auth v-else />
+    <QuizApp v-if="session" />
   </div>
 </template>
