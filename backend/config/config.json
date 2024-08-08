@@ -4,11 +4,12 @@
     "password": "",
     "database": "quizzer_games",
     "host": "127.0.0.1",
+    "port": "3308",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "",
     "database": "quizzer_games_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
