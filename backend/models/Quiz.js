@@ -1,15 +1,49 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-const QuizSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    questions: [
-        {
-            questionText: { type: String, required: true },
-            options: [
-                { optionText: { type: String, required: true }, isCorrect: { type: Boolean, required: true } }
-            ]
-        }
-    ]
+const Quiz = sequelize.define('Quiz', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 });
 
-module.exports = mongoose.model('Quiz', QuizSchema);
+const Question = sequelize.define('Question', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    questionText: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
+
+const Option = sequelize.define('Option', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    optionText: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    isCorrect: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    }
+});
+
+Quiz.hasMany(Question, { onDelete: 'CASCADE' });
+Question.belongsTo(Quiz);
+Question.hasMany(Option, { onDelete: 'CASCADE' });
+Option.belongsTo(Question);
+
+module.exports = { Quiz, Question, Option };

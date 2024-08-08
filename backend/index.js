@@ -1,23 +1,5 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const sequelize = require('./config/database');
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Routes
-app.use('/api/quizzes', require('./routes/quizRoutes'));
-
-// Database Connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
+sequelize.sync({ force: false })
+    .then(() => console.log('Database synced'))
     .catch(err => console.log(err));
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
