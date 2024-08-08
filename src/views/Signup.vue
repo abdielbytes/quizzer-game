@@ -62,6 +62,9 @@
   </template>
   
   <script>
+  import { useRouter } from 'vue-router';
+  import axios from 'axios'; // Import axios here
+  
   export default {
     name: 'SignupPage',
     data() {
@@ -72,19 +75,31 @@
         confirmPassword: '',
       };
     },
+    setup() {
+      const router = useRouter();
+      return { router };
+    },
     methods: {
-      handleSignup() {
+      async handleSignup() {
         if (this.password !== this.confirmPassword) {
           alert("Passwords don't match!");
           return;
         }
   
-        console.log('Name:', this.name);
-        console.log('Email:', this.email);
-        console.log('Password:', this.password);
-        
-        // Here, you can make an API call to register the user
-        // and handle the signup process.
+        try {
+          // Make API request to register the user
+          await axios.post('http://localhost:5000/api/auth/register', {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+          });
+  
+          // Redirect to CreateQuiz page after successful signup
+          this.$router.push('/createquiz');
+        } catch (error) {
+          console.error('Signup failed:', error);
+          alert('Signup failed! Please try again.');
+        }
       },
     },
   };
