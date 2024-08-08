@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'; // Import the correct functions
-import HomePage from '@/views/Home.vue'; // Updated to match your new component name
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '@/views/Quizzes.vue';
+import CreateQuizPage from '@/views/CreateQuiz.vue';
 // import QuizPage from '@/views/QuizPage.vue'; // Example for another page
-import CreateQuizPage from '@/views/CreateQuiz.vue'; // Example for creating quizzes
 
 const routes = [
   { path: '/', name: 'HomePage', component: HomePage },
