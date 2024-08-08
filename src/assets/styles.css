@@ -1,0 +1,79 @@
+/* src/assets/styles.css */
+
+/* Base styles for the entire app */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7fafc; /* light gray background */
+  }
+  
+  /* Utility classes */
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  /* Button styles */
+  button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0d0d0d;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Specific button colors */
+  .btn-blue {
+    background-color: #4299e1; /* blue */
+  }
+  
+  .btn-green {
+    background-color: #48bb78; /* green */
+  }
+  
+  /* Specific page styles */
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-xl {
+    font-size: 24px;
+  }
+  
+  .text-2xl {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .text-3xl {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .mb-4 {
+    margin-bottom: 16px;
+  }
+  
+  .mb-6 {
+    margin-bottom: 24px;
+  }
+  
