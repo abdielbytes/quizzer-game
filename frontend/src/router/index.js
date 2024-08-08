@@ -1,22 +1,17 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '../views/Home.vue';
-import CreateQuiz from '../views/CreateQuiz.vue';
+import { createRouter, createWebHistory } from 'vue-router'; // Import the correct functions
+import HomePage from '@/views/Home.vue'; // Updated to match your new component name
+// import QuizPage from '@/views/QuizPage.vue'; // Example for another page
+import CreateQuizPage from '@/views/CreateQuiz.vue'; // Example for creating quizzes
 
-Vue.use(Router);
+const routes = [
+  { path: '/', name: 'HomePage', component: HomePage },
+  // { path: '/quiz/:id', name: 'QuizPage', component: QuizPage },
+  { path: '/create', name: 'CreateQuizPage', component: CreateQuizPage }
+];
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-    },
-    {
-      path: '/create',
-      name: 'CreateQuiz',
-      component: CreateQuiz,
-    },
-  ],
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
+
+export default router;

@@ -1,12 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Quiz = sequelize.define('Quiz', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
     title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -14,11 +9,6 @@ const Quiz = sequelize.define('Quiz', {
 });
 
 const Question = sequelize.define('Question', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
     questionText: {
         type: DataTypes.STRING,
         allowNull: false
@@ -26,24 +16,20 @@ const Question = sequelize.define('Question', {
 });
 
 const Option = sequelize.define('Option', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
     optionText: {
         type: DataTypes.STRING,
         allowNull: false
     },
     isCorrect: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        defaultValue: false
     }
 });
 
-Quiz.hasMany(Question, { onDelete: 'CASCADE' });
-Question.belongsTo(Quiz);
-Question.hasMany(Option, { onDelete: 'CASCADE' });
-Option.belongsTo(Question);
+// Associations
+Quiz.hasMany(Question, { foreignKey: 'QuizId' });
+Question.belongsTo(Quiz, { foreignKey: 'QuizId' });
+Question.hasMany(Option, { foreignKey: 'QuestionId' });
+Option.belongsTo(Question, { foreignKey: 'QuestionId' });
 
 module.exports = { Quiz, Question, Option };
