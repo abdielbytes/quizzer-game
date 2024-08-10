@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LoginPage',
   data() {
@@ -49,11 +51,21 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-      // Here you can make an API call to log in the user
-      // and then redirect them to the create quiz page if successful.
+    async handleLogin() {
+      try {
+        const response = await axios.post('http://localhost:5000/api/auth/login', {
+          email: this.email,
+          password: this.password,
+        });
+        
+        console.log('Login successful:', response.data);
+
+        // Redirect to the create quiz page
+        this.$router.push('/create');
+      } catch (error) {
+        console.error('Login failed:', error.response.data);
+        alert('Login failed! Please check your credentials and try again.');
+      }
     },
   },
 };

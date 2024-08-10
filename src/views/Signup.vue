@@ -93,7 +93,7 @@ export default {
           password: this.password,
         });
 
-        this.$router.push('/createquiz');
+        this.$router.push('/create');
       } catch (error) {
         console.error('Signup failed:', error);
         alert('Signup failed! Please try again.');
